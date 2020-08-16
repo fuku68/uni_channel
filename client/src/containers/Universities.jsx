@@ -13,10 +13,11 @@ const Universities = () => {
   const store = useSelector(state => state.universities)
 
   useEffect(() => {
-    const result = dispatch(universitiesRequest())
+    dispatch(universitiesRequest())
   }, [])
 
   const onSelectUniversity = (university) => {
+    history.push(`/universities/${university.id}/feeds/`)
   }
 
   return (

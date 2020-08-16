@@ -4,7 +4,7 @@ import { UniversityActionTypes } from './types'
 import { universitiesSuccess, universitiesFailure } from './actions'
 
 /**
- * Get University List
+ * Get university list
  */
 function* getUniversities(_action) {
   try {
