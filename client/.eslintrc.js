@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ["prettier", "react", "react-app"],
   rules: {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "prettier/prettier": [
       "error", {
         "singleQuote": true,

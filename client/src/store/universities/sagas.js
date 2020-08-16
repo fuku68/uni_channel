@@ -6,13 +6,10 @@ import { universitiesSuccess, universitiesFailure } from './actions'
 /**
  * Get University List
  */
-function* getUniversities(action) {
+function* getUniversities(_action) {
   try {
     const response = yield call(getUniversitiesReq)
     yield put(universitiesSuccess(response))
-    if (action.payload.callback) {
-      action.payload.callback(response)
-    }
   } catch (e) {
     yield put(universitiesFailure(e))
   }

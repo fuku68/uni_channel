@@ -10,7 +10,8 @@ const reducer = (state = initialState, action) => {
     case UniversityActionTypes.UNIVERSIRY_INDEX_REQUEST:
       return { ...state, loading: true, universities: [] }
     case UniversityActionTypes.UNIVERSIRY_INDEX_SUCCESS: {
-      return state
+      const { data } = action.payload.data
+      return { ...state, loading: false, universities: data }
     }
     case UniversityActionTypes.UNIVERSIRY_INDEX_FAILURE:
       return { ...state, loading: false, universities: [] }
