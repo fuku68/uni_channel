@@ -7,6 +7,8 @@ Rails.application.routes.draw do
           resources :coments, only: [:create]
         end
       end
+
+      resources :tags, only: [:index]
     end
   end
 end

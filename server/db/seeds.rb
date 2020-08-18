@@ -13,3 +13,10 @@ CSV.read(Rails.root.join('db', 'csv', 'universities.csv').to_s).each do |row|
   next unless university.nil?
   University.create(name: row[0])
 end
+
+TAG_LABELS = ['講義', 'サークル']
+TAG_LABELS.each do |label|
+  tag = Tag.find_by(label: label)
+  next unless tag.nil?
+  Tag.create(label: label)
+end

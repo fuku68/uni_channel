@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Container } from '@material-ui/core';
+import { Container } from '@material-ui/core'
 import { universitiesRequest } from '../store/universities/actions'
 
-import UniversitiesComp from '../components/Universities'
+import UniversitiesComp from '../components/universities/Universities'
 
 const Universities = () => {
   const history = useHistory()
@@ -17,7 +17,7 @@ const Universities = () => {
   }, [])
 
   const onSelectUniversity = (university) => {
-    history.push(`/universities/${university.id}/feeds/`)
+    history.push(`/universities/${university.id}/feeds`)
   }
 
   return (

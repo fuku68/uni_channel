@@ -3,6 +3,7 @@ class CreateFeeds < ActiveRecord::Migration[5.1]
     create_table :feeds do |t|
       t.bigint :university_id
       t.string :name
+      t.string :title
       t.text :content
       t.string :session_id
 

@@ -15,7 +15,7 @@ function* getUniversities(_action) {
   }
 }
 
-function getUniversitiesReq() {
+const getUniversitiesReq = () => {
   const url = '/api/v1/universities'
   return axios.get(url, {})
 }
