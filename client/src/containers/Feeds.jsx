@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container } from '@material-ui/core';
+import { Container } from '@material-ui/core'
 
 import { feedsRequest, feedPostResuest } from '../store/feeds/actions'
 import { tagsRequest } from '../store/tags/actions'

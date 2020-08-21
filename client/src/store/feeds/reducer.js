@@ -15,12 +15,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: true }
     case FeedActionTypes.FEED_INDEX_SUCCESS: {
       const { data } = action.payload.data
-      const { university, feeds } = data
+      const { university, feeds, pageNum, totalPages } = data
       return {
         ...state,
         loading: false,
         university,
         feeds,
+        pageNum,
+        totalPages,
       }
     }
     case FeedActionTypes.FEED_INDEX_FAILURE: {

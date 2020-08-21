@@ -4,10 +4,11 @@ import { makeStyles, createStyles } from '@material-ui/core/styles'
 
 import Header from './../Header'
 import Feed from './Feed'
+import Comment from './Comment'
 import CreateButton from './CreateButton'
 import Form from './Form'
 
-import EmptyImage from '../../asset/empty.png'
+import EmptyImage from '../../asset/empty2.png'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   empty: {
@@ -16,11 +17,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
       justifyContent: 'center',
       alignItems: 'center',
     },
-  },
-  emptySpace: {
-    [theme.breakpoints.up('sm')]: {
-      margin: '32px',
-    }
   },
   emptyImageWrapper: {
     textAlign: 'center',
@@ -41,53 +37,62 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }))
 
-const Feeds = ({
-  feeds,
-  tags,
+const Comments = ({
+  university,
+  feed,
+  comments,
   onCreate,
-  onShowFeed,
 }) => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
   const reenderEmpty = () => (
     <>
-      <Box m={1} className={classes.emptySpace}/>
       <Grid container className={classes.empty}>
         <Grid item xs={12} sm={6} className={classes.emptyImageWrapper}>
-          <img src={EmptyImage} className={classes.emptyImage} alt="スレッドはありません"/>
+          <img src={EmptyImage} className={classes.emptyImage} alt="コメントはありません"/>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.emptyMessageWrapper}>
           <Typography variant="h6" component="h3">
-            投稿スレッドはありません<br />
-            スレッドを作成しましょう
+            コメントはありません<br />
           </Typography>
         </Grid>
       </Grid>
+      <Box m={3} />
     </>
   )
 
   return (
-    <div>
+    <>
       <Header />
       <Box m={10} />
-      { // スレッドの一覧
+
+      { // スレッド
       }
       <Grid container spacing={3}>
-        <Grid item xs={12} className={classes.title}>
+        <Grid item xs={12} >
           <Typography variant="h5" component="h2">
-            スレッドの一覧
+            スレッド
+          </Typography>
+        </Grid>
+        <Grid item xs={12} >
+          <Feed feed={feed} />
+        </Grid>
+
+
+        <Grid item xs={12} >
+          <Typography variant="h5" component="h2">
+            コメント一覧
           </Typography>
         </Grid>
 
-        { // スレッドがない場合
-          feeds.length === 0 && reenderEmpty() }
-
-        { feeds.map((feed, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Feed feed={feed} onClick={onShowFeed} />
+        { comments.length === 0 && reenderEmpty() }
+        { comments.map((comment, index) => (
+          <Grid item xs={12} key={index}>
+            <Comment comment={comment} />
           </Grid>
         ))}
+
       </Grid>
 
       <div className={classes.create}>
@@ -95,11 +100,11 @@ const Feeds = ({
       </div>
       <Form
         open={open}
-        tagsList={tags}
         onCreate={onCreate}
         onClose={() => setOpen(false)}
       />
-    </div>
+    </>
   )
 }
-export default Feeds
+
+export default Comments

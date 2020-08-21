@@ -38,6 +38,9 @@ function* postFeed(action) {
   try {
     const response = yield call(postFeedReq, action.payload)
     yield put(feedPostSuccess(response))
+    if (action.payload.callback) {
+      action.payload.callback(response)
+    }
   } catch (e) {
     yield put(feedPostFailure(e))
   }
@@ -62,6 +65,9 @@ function* deleteFeed(action) {
   try {
     const response = yield call(deleteFeedReq, action.payload)
     yield put(feedDeleteSuccess(response))
+    if (action.payload.callback) {
+      action.payload.callback(response)
+    }
   } catch (e) {
     yield put(feedDeleteFailure(e))
   }

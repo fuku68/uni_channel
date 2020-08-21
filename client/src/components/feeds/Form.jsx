@@ -11,7 +11,7 @@ import {
   Button,
 } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles'
 
 import Header from './../Header'
@@ -38,14 +38,14 @@ const Form = ({
   onClose,
 }) => {
   const classes = useStyles()
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   const [tag, setTag] = useState([])
   const [tags, setTags] = useState([])
   const { handleSubmit, register, errors, control } = useForm()
 
-  const onSubmit = values => onCreate(values);
+  const onSubmit = values => onCreate(values)
 
   return (
     <Dialog open={open} fullScreen={fullScreen}

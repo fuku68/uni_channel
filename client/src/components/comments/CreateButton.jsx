@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
-import CreateIcon from '@material-ui/icons/Create'
+import AddCommentIcon from '@material-ui/icons/AddComment'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   button: {
@@ -20,10 +20,10 @@ const CreateButton = ({
       variant="contained"
       color="primary"
       size="large"
-      startIcon={<CreateIcon/>}
+      startIcon={<AddCommentIcon/>}
       onClick={() => onClick()}
     >
-      スレッドの作成
+      コメントする
     </Button>
   )
 }

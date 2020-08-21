@@ -1,26 +1,26 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Typography,
   Card,
   CardContent,
   CardActions,
   Button,
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 const useStyles = makeStyles({
   open: {
     marginLeft: 'auto',
   },
-  contet: {
-  }
+  content: {
+  },
 })
 
 const Feed = ({
   feed,
   onClick,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Card>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   bar: {

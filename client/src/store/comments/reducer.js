@@ -15,7 +15,17 @@ const reducer = (state = initialState, action) => {
     case CommentActionTypes.COMMENT_INDEX_REQUEST:
       return { ...state, loading: true }
     case CommentActionTypes.COMMENT_INDEX_SUCCESS: {
-      return state
+      const { data } = action.payload.data
+      const { university, feed, comments, pageNum, totalPages } = data
+      return {
+        ...state,
+        loading: false,
+        university,
+        feed,
+        comments,
+        pageNum,
+        totalPages,
+      }
     }
     case CommentActionTypes.COMMENT_INDEX_FAILURE:
       return { ...state, loading: false }

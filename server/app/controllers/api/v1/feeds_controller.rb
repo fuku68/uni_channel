@@ -1,7 +1,7 @@
 module Api
   module V1
     class FeedsController < ApplicationController
-      PAGE_PAR_NUM = 20
+      PAGE_PAR_NUM = 24
 
       # index feed
       def index

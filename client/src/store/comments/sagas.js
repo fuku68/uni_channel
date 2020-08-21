@@ -15,7 +15,7 @@ import {
  */
 function* getComments(action) {
   try {
-    const response = yield call(getCommentsReq(action.payload))
+    const response = yield call(getCommentsReq, action.payload)
     yield put(commentsSuccess(response))
   } catch (e) {
     yield put(commentsFailure(e))
@@ -36,18 +36,24 @@ function getCommentsReq(payload) {
  */
 function* postComment(action) {
   try {
-    const response = yield call(postCommentRew(action.payload))
+    const response = yield call(postCommentReq, action.payload)
     yield put(commentPostSuccess(response))
+    if (action.payload.callback) {
+      action.payload.callback(response)
+    }
   } catch (e) {
     yield put(commentPostFailure(e))
   }
 }
 
-function postCommentRew(payload) {
-  const { universityId, feedId } = payload
+function postCommentReq(payload) {
+  const { universityId, feedId, name, content } = payload
   const url = `/api/v1/universities/${universityId}/feeds/${feedId}/comments`
 
-  return axios.post(url, {})
+  return axios.post(url, {
+    name,
+    content,
+  })
 }
 
 /**
@@ -55,8 +61,11 @@ function postCommentRew(payload) {
  */
 function* deleteComment(action) {
   try {
-    const response = yield call(deleteCommentReq(action.payload))
+    const response = yield call(deleteCommentReq, action.payload)
     yield put(commentDeleteSuccess(response))
+    if (action.payload.callback) {
+      action.payload.callback(response)
+    }
   } catch (e) {
     yield put(commentDeleteFailure(e))
   }

@@ -26,4 +26,4 @@ const Universities = () => {
     </Container>
   )
 }
-export default Universities;
+export default Universities

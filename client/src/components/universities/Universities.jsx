@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Box, Grid, TextField, InputAdornment } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab';
+import { Autocomplete } from '@material-ui/lab'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search'
 
 import Header from './../Header'
 import University from './University'
@@ -29,9 +29,9 @@ const Universities = ({
   }
 
   const filteredUniversities = universities.filter(university => {
-    if (!search) return true;
-    return _.includes(university.name, search);
-  });
+    if (!search) return true
+    return _.includes(university.name, search)
+  })
 
   return (
     <div>

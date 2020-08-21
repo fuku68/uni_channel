@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :universities, only: [:index] do
         resources :feeds, only: [:index, :create, :destroy] do
-          resources :coments, only: [:index, :create, :destroy]
+          resources :comments, only: [:index, :create, :destroy]
         end
       end
 

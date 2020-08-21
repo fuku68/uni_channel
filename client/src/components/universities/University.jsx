@@ -1,7 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Card, CardContent } from '@material-ui/core';
-import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Card, CardContent } from '@material-ui/core'
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary'
 
 const useStyles = makeStyles({
   content: {
@@ -15,13 +15,13 @@ const useStyles = makeStyles({
   icon: {
     marginRight: '9px',
   }
-});
+})
 
 const University = ({
   university,
   onClick
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Card onClick={ () => onClick(university) }>
@@ -32,7 +32,7 @@ const University = ({
         </Typography>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 export default University

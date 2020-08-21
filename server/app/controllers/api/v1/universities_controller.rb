@@ -3,7 +3,7 @@ module Api
     class UniversitiesController < ApplicationController
       def index
         universities = University.all
-        render json: { status: 'success', data: universities }
+        render json: { status: 'success', data: universities.map{ |u| UniversitySerializer.new(u) } }
       end
     end
   end
