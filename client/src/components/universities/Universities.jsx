@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, TextField, InputAdornment } from '@material-ui/core'
+import { Box, Grid, TextField, InputAdornment } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search';
@@ -36,6 +36,7 @@ const Universities = ({
   return (
     <div>
       <Header />
+      <Box m={10} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Autocomplete

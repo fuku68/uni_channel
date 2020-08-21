@@ -19,7 +19,18 @@ module Api
       end
 
       def create
-        @university_id = params[:university_id]
+        @feed = Feed.new({
+          university_id: feed_params['university_id'],
+          name: feed_params['name'],
+          title: feed_params['title'],
+          content: feed_params['content'],
+          session_id: @session_id
+        })
+        @feed.save!
+      end
+
+      def feed_params
+        @feed_params ||= params.permit(:university_id, :name, :title, :content, tags: [])
       end
     end
   end

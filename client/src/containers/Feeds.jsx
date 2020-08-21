@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import queryString from 'query-string';
 import { Container } from '@material-ui/core';
 
-import { feedsRequest } from '../store/feeds/actions'
+import { feedsRequest, feedPostResuest } from '../store/feeds/actions'
 import { tagsRequest } from '../store/tags/actions'
 
 import FeedsComp from '../components/feeds/Feeds'
@@ -12,27 +11,39 @@ import FeedsComp from '../components/feeds/Feeds'
 const Feeds = ({
   match,
 }) => {
-  const location = useLocation()
   const dispatch = useDispatch()
   const store = useSelector(state => state.feeds)
   const tagsStore = useSelector(state => state.tags)
 
+  const [universityId, setUniversityId] = useState(null)
+
   useEffect(() => {
-    const params = queryString.parse(location.search)
+    const { university_id, page } = match.params
+    setUniversityId(university_id)
+
     dispatch(feedsRequest({
-      university_id: match.params.university_id,
-      page: params.page,
+      universityId: university_id,
+      page,
     }))
 
     // タグ一覧の取得
     dispatch(tagsRequest())
   }, [])
 
-  console.log(tagsStore.tags)
+  const onCreate = (params) => {
+    // Create feed
+     dispatch(feedPostResuest({
+       ...params,
+       universityId,
+     }))
+  }
+
   return (
     <Container fixed>
       <FeedsComp
+        feeds={store.feeds}
         tags={tagsStore.tags}
+        onCreate={onCreate}
       />
     </Container>
   )

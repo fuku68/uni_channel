@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20200816065228) do
   create_table "feeds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "university_id"
     t.string "name"
+    t.string "title"
     t.text "content"
     t.string "session_id"
     t.datetime "created_at", null: false

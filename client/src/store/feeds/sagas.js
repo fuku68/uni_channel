@@ -15,7 +15,7 @@ import {
  */
 function* getFeeds(action) {
   try {
-    const response = yield call(getFeedsReq(action.payload))
+    const response = yield call(getFeedsReq, action.payload)
     yield put(feedsSuccess(response))
   } catch (e) {
     yield put(feedsFailure(e))
@@ -23,8 +23,8 @@ function* getFeeds(action) {
 }
 
 function getFeedsReq(payload) {
-  const { university_id, page } = payload
-  let url = `/api/v1/universities/${university_id}/feeds`
+  const { universityId, page } = payload
+  let url = `/api/v1/universities/${universityId}/feeds`
   if (page) {
     url += `?page=${page}`
   }
@@ -36,15 +36,23 @@ function getFeedsReq(payload) {
  */
 function* postFeed(action) {
   try {
-    const response = yield call(postFeedReq(action.payload))
+    const response = yield call(postFeedReq, action.payload)
     yield put(feedPostSuccess(response))
   } catch (e) {
     yield put(feedPostFailure(e))
   }
 }
 
-function postFeedReq(_payload) {
-  // TODO
+function postFeedReq(payload) {
+  const { universityId, name, title, tags, content } = payload
+
+  let url = `/api/v1/universities/${universityId}/feeds`
+  return axios.post(url, {
+    name,
+    title,
+    tags,
+    content,
+  })
 }
 
 /**
@@ -52,7 +60,7 @@ function postFeedReq(_payload) {
  */
 function* deleteFeed(action) {
   try {
-    const response = yield call(deleteFeedReq(action.payload))
+    const response = yield call(deleteFeedReq, action.payload)
     yield put(feedDeleteSuccess(response))
   } catch (e) {
     yield put(feedDeleteFailure(e))
