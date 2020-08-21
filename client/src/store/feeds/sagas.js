@@ -68,8 +68,8 @@ function* deleteFeed(action) {
 }
 
 function deleteFeedReq(payload) {
-  const { university_id, id } = payload
-  const url = `/api/v1/universities/${university_id}/feeds/${id}`
+  const { universityId, id } = payload
+  const url = `/api/v1/universities/${universityId}/feeds/${id}`
   return axios.delete(url, {})
 }
 

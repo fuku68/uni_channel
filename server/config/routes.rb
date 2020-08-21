@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :universities, only: [:index] do
-        resources :feeds, only: [:index, :show, :create] do
-          resources :coments, only: [:create]
+        resources :feeds, only: [:index, :create, :destroy] do
+          resources :coments, only: [:index, :create, :destroy]
         end
       end
 

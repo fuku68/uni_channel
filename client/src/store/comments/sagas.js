@@ -23,8 +23,8 @@ function* getComments(action) {
 }
 
 function getCommentsReq(payload) {
-  const { university_id, feed_id, page } = payload
-  let url = `/api/v1/universities/${university_id}/feeds/${feed_id}`
+  const { universityId, feedId, page } = payload
+  let url = `/api/v1/universities/${universityId}/feeds/${feedId}/comments`
   if (page) {
     url += `?page=${page}`
   }
@@ -44,8 +44,8 @@ function* postComment(action) {
 }
 
 function postCommentRew(payload) {
-  const { university_id, feed_id } = payload
-  const url = `/api/v1/universities/${university_id}/feeds/${feed_id}/comments`
+  const { universityId, feedId } = payload
+  const url = `/api/v1/universities/${universityId}/feeds/${feedId}/comments`
 
   return axios.post(url, {})
 }
@@ -63,8 +63,8 @@ function* deleteComment(action) {
 }
 
 function deleteCommentReq(payload) {
-  const { university_id, feed_id, id } = payload
-  const url = `/api/v1/universities/${university_id}/feeds/${feed_id}/comments/${id}`
+  const { universityId, feedId, id } = payload
+  const url = `/api/v1/universities/${universityId}/feeds/${feedId}/comments/${id}`
 
   return axios.delete(url, {})
 }

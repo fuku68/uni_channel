@@ -6,6 +6,7 @@ import configureStore from './store/configureStore'
 
 import UniversitiesPage from './containers/Universities'
 import FeedsPage from './containers/Feeds'
+import CommentsPage from './containers/Comments'
 
 const history = createBrowserHistory()
 const store = configureStore(history)
@@ -19,6 +20,11 @@ function App() {
           exact
           path="/universities/:university_id/feeds"
           component={FeedsPage}
+        ></Route>
+        <Route
+          exact
+          path="/universities/:university_id/feeds/:feed_id/comments"
+          component={CommentsPage}
         ></Route>
       </Router>
     </Provider>

@@ -11,6 +11,7 @@ import FeedsComp from '../components/feeds/Feeds'
 const Feeds = ({
   match,
 }) => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const store = useSelector(state => state.feeds)
   const tagsStore = useSelector(state => state.tags)
@@ -38,12 +39,18 @@ const Feeds = ({
      }))
   }
 
+  // スレッドの詳細表示
+  const onShowFeed = (feed) => {
+    history.push(`/universities/${universityId}/feeds/${feed.id}/comments`)
+  }
+
   return (
     <Container fixed>
       <FeedsComp
         feeds={store.feeds}
         tags={tagsStore.tags}
         onCreate={onCreate}
+        onShowFeed={onShowFeed}
       />
     </Container>
   )

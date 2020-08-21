@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container } from '@material-ui/core';
+
+import { commentsRequest, commentPostRequest } from '../store/comments/actions'
 
 const Comments =({
   match,
@@ -15,11 +17,17 @@ const Comments =({
   })
 
   useEffect(() => {
-    const { university_id, feed_id} = match.params
+    const { university_id, feed_id, page } = match.params
     setState({
       universityId: university_id,
       feedId: feed_id,
     })
+
+    dispatch(commentsRequest({
+      universityId: university_id,
+      feedId: feed_id,
+      page,
+    }))
   }, [])
 
   return (
