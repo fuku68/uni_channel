@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   field: {
     width: '100%',
   },
+  helper: {
+    textAlign: 'right',
+  },
   action: {
     textAlign: 'center',
   },
@@ -43,7 +46,8 @@ const Form = ({
 
   const [tag, setTag] = useState([])
   const [tags, setTags] = useState([])
-  const { handleSubmit, register, errors, control } = useForm()
+  const { handleSubmit, watch, register, errors, control } = useForm()
+  const watchFields = watch(['name', 'title', 'content']);
 
   const onSubmit = values => onCreate(values)
 
@@ -68,13 +72,16 @@ const Form = ({
                 className={ classes.field }
                 name="name"
                 label="名前"
+                maxLength="64"
                 inputRef={
                   register({
                     required: "Required",
+                    maxLength: 64,
                   })
                 }
                 error={ !!errors.name }
-                helperText={ errors.name && errors.name.message }
+                FormHelperTextProps={{className: classes.helper}}
+                helperText={`${(watchFields.name || '').length} / 64文字`}
               />
             </Grid>
             <Grid item xs={12}>
@@ -82,13 +89,16 @@ const Form = ({
                 className={ classes.field }
                 name='title'
                 label="タイトル"
+                maxLength="64"
                 inputRef={
                   register({
                     required: "Required",
+                    maxLength: 64,
                   })
                 }
                 error={ !!errors.title }
-                helperText={ errors.title && errors.title.message }
+                FormHelperTextProps={{className: classes.helper}}
+                helperText={`${(watchFields.title || '').length} / 64文字`}
               />
             </Grid>
             <Grid item xs={12}>
@@ -102,8 +112,10 @@ const Form = ({
                     multiple
                     value={tags}
                     onChange={(event, newValue) => {
-                      setTags(newValue)
-                      onChange(newValue)
+                      if (value.length < 3) {
+                        setTags(newValue)
+                        onChange(newValue)
+                      }
                     }}
                     name='tags'
                     options={tagsList}
@@ -123,7 +135,9 @@ const Form = ({
                         }}
                         onBlur={(e) => {
                           const val = e.target.value
-                          if (val) {
+                          if (value.length >= 3) {
+                            setTags([...tags])
+                          } else if (val) {
                             if (_.includes(tags, val)) {
                               setTags([...tags])
                             } else {
@@ -131,6 +145,8 @@ const Form = ({
                             }
                           }
                         }}
+                        FormHelperTextProps={{className: classes.helper}}
+                        helperText={`${value.length} / 3つ`}
                       />
                     )}
                   />
@@ -148,10 +164,12 @@ const Form = ({
                 inputRef={
                   register({
                     required: "Required",
+                    maxLength: 64,
                   })
                 }
                 error={ !!errors.content }
-                helperText={ errors.content && errors.content.message }
+                FormHelperTextProps={{className: classes.helper}}
+                helperText={`${(watchFields.content || '').length} / 1200文字`}
               />
             </Grid>
             {

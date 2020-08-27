@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   field: {
     width: '100%',
   },
+  helper: {
+    textAlign: 'right',
+  },
   action: {
     textAlign: 'center',
   },
@@ -36,7 +39,8 @@ const Form = ({
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const { handleSubmit, register, errors } = useForm()
+  const { handleSubmit, watch, register, errors } = useForm()
+  const watchFields = watch(['name', 'content']);
 
   const onSubmit = values => onCreate(values)
 
@@ -62,10 +66,12 @@ const Form = ({
                 inputRef={
                   register({
                     required: "Required",
+                    maxLength: 64,
                   })
                 }
                 error={ !!errors.name }
-                helperText={ errors.name && errors.name.message }
+                FormHelperTextProps={{className: classes.helper}}
+                helperText={`${(watchFields.name || '').length} / 64文字`}
               />
             </Grid>
 
@@ -80,10 +86,12 @@ const Form = ({
                 inputRef={
                   register({
                     required: "Required",
+                    maxLength: 1200,
                   })
                 }
                 error={ !!errors.content }
-                helperText={ errors.content && errors.content.message }
+                FormHelperTextProps={{className: classes.helper}}
+                helperText={`${(watchFields.content || '').length} / 1200文字`}
               />
             </Grid>
             {
